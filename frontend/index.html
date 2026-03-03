@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meme Generator</title>
+
+    <!-- Tailwind CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="bg-gradient-to-br from-indigo-500 to-purple-600 min-h-screen p-6">
+    <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl p-10">
+      <h1 class="text-4xl font-extrabold text-center mb-10 text-purple-700">
+        🎭 Meme Generator
+      </h1>
+
+      <!-- TEMPLATE LIST -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">
+          Meme Şablonları
+        </h2>
+        <div
+          id="templateList"
+          class="flex gap-4 overflow-x-auto py-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-200"
+        ></div>
+      </section>
+
+      <hr class="my-10 border-gray-300" />
+
+      <!-- EDITOR -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Meme Editor</h2>
+
+        <form id="memeForm" class="space-y-6">
+          <input type="hidden" id="templateId" />
+
+          <!-- TEXT INPUTS -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block font-medium text-gray-700">Yuxarı Mətn</label>
+              <input
+                id="topText"
+                class="w-full p-3 rounded-lg border"
+                placeholder="Mətn..."
+              />
+            </div>
+
+            <div>
+              <label class="block font-medium text-gray-700">Aşağı Mətn</label>
+              <input
+                id="bottomText"
+                class="w-full p-3 rounded-lg border"
+                placeholder="Mətn..."
+              />
+            </div>
+          </div>
+
+          <!-- STYLE -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label class="block font-medium text-gray-700">Text Rəngi</label>
+              <input
+                id="textColor"
+                type="color"
+                class="w-full h-12 rounded-lg border"
+                value="#ffffff"
+              />
+            </div>
+
+            <div>
+              <label class="block font-medium text-gray-700">Kontur Rəngi</label>
+              <input
+                id="outlineColor"
+                type="color"
+                class="w-full h-12 rounded-lg border"
+                value="#000000"
+              />
+            </div>
+
+            <div>
+              <label class="block font-medium text-gray-700">Font Ölçüsü</label>
+              <input
+                id="fontSize"
+                type="range"
+                min="16"
+                max="60"
+                value="32"
+                class="w-full"
+              />
+            </div>
+          </div>
+
+          <!-- ⭐ FINAL PREVIEW (BALACA VƏ ORTADA) -->
+          <div
+            id="previewContainer"
+            class="hidden relative mx-auto mt-4 w-50 !max-w-[400px] h-[350px] border rounded-lg bg-black flex justify-center items-center overflow-hidden"
+          >
+            <img
+              id="previewImage"
+              class="max-w-full max-h-full object-contain rounded-lg"
+            />
+            <div id="previewTextBoxes" class="absolute inset-0"></div>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="flex gap-4 mt-6">
+            <button
+              type="submit"
+              class="bg-purple-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-purple-700"
+            >
+              💾 Meme Yarat (DB)
+            </button>
+
+            <button
+              id="downloadBtn"
+              type="button"
+              class="bg-green-600 text-white w-full py-3 rounded-lg text-lg font-semibold hover:bg-green-700"
+            >
+              📥 Download Meme
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <hr class="my-10 border-gray-300" />
+
+      <!-- GENERATED MEMES -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Yaradılmış Memelər</h2>
+        <div
+          id="memeList"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+      </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
